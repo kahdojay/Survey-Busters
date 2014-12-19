@@ -85,17 +85,51 @@ selections
 
 
 Controllers/routes
+/
+get /signup
+post /signup
+get /login
+get /logout
+get /user/:id
+get /survey/new
+post /survey/new
+get /survey/:id
+post /survey
 
 
 View
+home
+signup form
+login form
+user home
+create + update survey form
+take survey form
+survey stats
 
 
 ROADMAP
 build Models/Migrations (together) [DONE]
 seed db [DONE]
+fill in readme - DON J.
 
-Survey Creation
+Make basic root page - DON J.
+Implement User login/logout/sign up - DON J.
 
-Survey Taking
+Feature: Create Survey - MIKE + RICKY
+  make "create survey" view (erb :create_survey)
+  implement route (get /survey/new)
+  implement survey creation route (post /survey/new)
+    Survey.create
+    redirect user to "thanks for creating a survey" page
+    show the survey/:id url
+  implement update survey
 
-Survey Results
+Feature: Take Survey - DON J. + HAILEY
+  make "take survey" view (erb :take_survey)
+  implement route (get /survey/:id)
+  implement survey_taker creation route
+  AJAX call
+    SurveyTaker.create (post /survey)
+    response: show stats (jquery)
+
+Survey Results (see above)
