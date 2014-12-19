@@ -1,0 +1,10 @@
+<form action='/entry/edit/<%= @entry.id%>' method='POST'>
+  <input type="hidden" name="_method" value="PUT">
+  Title:<br>
+  <input type="text" name="entry[title]" value="<%= @entry.title %>"><br>
+  Post:<br>
+  <input class = 'post' type="text" name="entry[post]"   value="<%= @entry.post %>"><br>
+  Tags (separate with comma):<br>
+  <input type='text' name="tag[tag_names]" value="<%= @entry.show_tags %>"><br>
+  <input type='submit'>
+</form>

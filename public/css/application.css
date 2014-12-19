@@ -1,0 +1,16 @@
+body {
+  background-color: white;
+  background-size: 80%;
+  background-repeat: no-repeat;
+}
+.container {
+  margin: 20px auto;
+  width: 80%;
+  padding: 0px 20px 20px 20px;
+  border: 1px dotted black;
+  background-color: #a5adb0;
+  /*background: url('http://i.imgur.com/bBerK4K.png');*/
+}
+th {
+  text-align: left;
+}

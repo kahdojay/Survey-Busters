@@ -1,0 +1,8 @@
+<div class='container'>
+  <h2><%= @user.email %>'s Posts:</h2><br>
+  <% @entries.each do |p| %>
+    <%= erb :'entry/single', locals: { entry: p } %>
+  <% end %>
+
+</div>
+<%= erb :home %>

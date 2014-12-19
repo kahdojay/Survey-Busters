@@ -1,0 +1,11 @@
+<div class='container'>
+  <h2>Login:</h2>
+  <%= display_error %>
+  <form action='/login' method='POST'>
+    <p>Email:</p><br>
+    <input type='text' name='user[email]'><br>
+    <p>Password:</p><br>
+    <input type='password' name='user[password]'>
+    <input type='submit' value='Login'>
+  </form>
+</div>

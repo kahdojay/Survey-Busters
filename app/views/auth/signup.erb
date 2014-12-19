@@ -1,0 +1,14 @@
+<div class='container'>
+  Sign in:<br>
+  <%= display_error %>
+
+  <form action='/signup' method='POST'>
+    Username:
+    <input class='login' type='text' name='user[email]'><br>
+    Password:
+    <input class='login' type='password' name='user[password]'><br>
+    Confirm Password:
+    <input class='login' type='password' name='password_confirm'><br>
+    <input type='submit' value='sign up'>
+  </form>
+</div>

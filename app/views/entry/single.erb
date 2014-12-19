@@ -1,0 +1,13 @@
+<p> Title: <%= entry.title %></p>
+<p> Created at: <%= entry.created_at %> </p>
+<p> Body: <%= entry.post %> </p>
+<p> Tags: </p>
+<ul>
+<% entry.tags.each do |t| %>
+  <li>
+    <a href="/entries/all?tag=<%= t.id %>"> <%= t.tag_name %></a>
+  </li>
+<% end %></br>
+</ul>
+
+<%= erb :'entry/edit_delete_buttons', locals: {entry: entry} %>

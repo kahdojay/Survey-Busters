@@ -1,0 +1,23 @@
+<div class='container'>
+  <% @entries.each do |entry| %>
+    Author:
+    <a href="/users/<%= entry.user_id %>/entries">
+    <%= User.find(entry.user_id).email %><br>
+    </a>
+    Entry Title: <%= entry.title %><br>
+    Publish Date: <%= entry.created_at %><br>
+    <%= erb :'entry/edit_delete_buttons', locals: {entry: entry} %>
+    <p class='post'>
+      <%= entry.post %>
+    </p> </br>
+    Tags:
+    <ul>
+    <% entry.tags.each do |t| %>
+      <li>
+        <a href="/entries/all/<%= t.id %>"> <%= t.tag_name %></a>
+      </li>
+      <% end %>
+    </ul>
+    <br>
+  <% end %>
+</div>

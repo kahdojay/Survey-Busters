@@ -1,0 +1,60 @@
+Data/Models
+Entry
+- entries table
+  date (timestamps)
+  title
+  post
+
+- entry model
+  has_many :tags through :entries_tags
+
+Tag
+- tags table
+  tag_name
+
+- tag model
+  has_many :entries through :entries_tags
+  parse method
+
+  entries_tags table
+  - tag_id
+  - entry_id
+
+
+CRUD/Features/Routes
+- Show all entries
+
+- Show a particular entry (by id)
+- Create a new entry
+- Edit an existing entry
+- Delete an existing entry
+- Show all entries with a given tag. (what will this URL look like? which controller will include this route?)
+
+
+
+~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~
+create user model and table
+add user id to entries table
+add user seeds
+add user_id seeds to entries
+
+make sign up view
+make login/logout view
+
+user signup
+user login
+user logout
+
+a user can write many articles, an article can be written by one author
+  - add_column user_id to :entries
+
+A user who is not logged in can only see entries
+A user who is logged in can create entries
+  hide create entries form if user is not signed in
+A user who is logged in can only update or destroy entries that they themselves have created
+  hide update entries form if user is not signed in and did not create the post
+  hide delete entries button if user did not create the post
+
+view all entries by a given author
+
+refactor view to reuse partial for single
