@@ -1,60 +1,101 @@
-Data/Models
-Entry
-- entries table
-  date (timestamps)
-  title
-  post
+USER STORIES
+only users can create surveys and share by url
+all users can take surveys
+non-users can take surveys
+after completing a survey, a taker sees survey stats
+a user can see the surveys they created
 
-- entry model
-  has_many :tags through :entries_tags
+Models/db
+a user can create many surveys (and a survey can be created only by one user)
+a survey belongs to a user
+a survey has many questions
+a question belongs to a survey
+a question has many answers
+an answer belongs to a question
 
-Tag
-- tags table
-  tag_name
+a user can take many surveys
+a survey can be taken by many users (and non-users)
 
-- tag model
-  has_many :entries through :entries_tags
-  parse method
+a user can give many answers
+an answer can be given by many users
 
-  entries_tags table
-  - tag_id
-  - entry_id
+users
+- create_users
+  t.string :email
+  t.string :password_digest
+  t.timestamps
+- user.rb
+  validate validate_email # custom validation
+  validates_uniqueness_of :email
+  validates_presence_of :user_name, :password
+  has_many :surveys (as creator)
+  has_many :surveys (as taker through: :survey_takers)
+  has_many :selections
+  has_many :answers through: :selections
+
+surveys
+- create_surveys
+  t.references :creator (class: user)
+  t.string :title
+  t.timestamps
+
+- survey.rb
+  validates_presence_of :title
+  belongs_to :creator
+  has_many :takers (through: :survey_takers class: user)
+  has_many :questions
+
+questions
+- create_questions
+  t.text :description
+  t.references :survey
+  t.timestamps
+- question.rb
+  has_many :answers
+  belongs_to :survey
+  validates_presence_of :description
+
+answers
+- create_answers
+  t.string :description
+  t.references :question
+  t.timestamps
+- answer.rb
+  belongs_to :question
+  has_many :selections
+  has_many :users through: :selections
+
+survey_takers
+- create_survey_takers
+  t.references :user
+  t.references :survey
+  t.timestamps
+- survey_taker.rb
+  belongs_to :user
+  belongs_to :survey
+
+selections
+- create_survey_takers
+  t.references :user
+  t.references :answer
+  t.timestamps
+- selection.rb
+  belongs_to :user
+  belongs_to :answer
 
 
-CRUD/Features/Routes
-- Show all entries
-
-- Show a particular entry (by id)
-- Create a new entry
-- Edit an existing entry
-- Delete an existing entry
-- Show all entries with a given tag. (what will this URL look like? which controller will include this route?)
+Controllers/routes
 
 
+View
 
-~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~~*~
-create user model and table
-add user id to entries table
-add user seeds
-add user_id seeds to entries
 
-make sign up view
-make login/logout view
+ROADMAP
+build Models/Migrations (together)
+seed db
 
-user signup
-user login
-user logout
+Survey Creation
 
-a user can write many articles, an article can be written by one author
-  - add_column user_id to :entries
+Survey Taking
 
-A user who is not logged in can only see entries
-A user who is logged in can create entries
-  hide create entries form if user is not signed in
-A user who is logged in can only update or destroy entries that they themselves have created
-  hide update entries form if user is not signed in and did not create the post
-  hide delete entries button if user did not create the post
-
-view all entries by a given author
-
-refactor view to reuse partial for single
+Survey Results
