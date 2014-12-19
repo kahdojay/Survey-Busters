@@ -1,10 +1,15 @@
 class User < ActiveRecord::Base
   has_secure_password
-  has_many :entries
+  validates :email, presence: true, email: true
 
-  # def self.get_users_by_entry_id(e_id)
-  #   entry_tag_objs = EntryTag.where(entry_id: e_id)
-  #   user_ids = entry_tag_objs.map { |et| et.user_id }
-  #   users = user_ids.map { |uid| User.where(id: uid) }
-  # end
+  has_many :created_surveys, class_name: "Survey"
+
+  has_many :taken_surveys, through: :survey_takers, source: :survey
+  has_many :survey_takers
+
+  has_many :selections
+  has_many :answers, through: :selections
+
+  validates_uniqueness_of :email
+  validates_presence_of :email, :password
 end
