@@ -112,8 +112,8 @@ build Models/Migrations (together) [DONE]
 seed db [DONE]
 fill in readme - DON J.
 
-Make basic root page - DON J.
-Implement User login/logout/sign up - DON J.
+Make basic root page - DON J. [DONE]
+Implement User login/logout/sign up - DON J. [DONE]
 
 Feature: Create Survey - MIKE + RICKY
   make "create survey" view (erb :create_survey)

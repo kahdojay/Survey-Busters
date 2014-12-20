@@ -1,5 +1,4 @@
 get '/' do
-  @tags = Tag.all
   erb :home
 end
 
@@ -17,9 +16,7 @@ end
 
 get '/users/:id/entries' do |id|
   @user = User.find(id)
-  @tags = Tag.all
-  @entries = Entry.where(user_id: id)
-  erb :'auth/user'
+  erb :'user/user'
 end
 
 get '/entries/all' do

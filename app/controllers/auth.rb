@@ -25,7 +25,7 @@ end
 post '/signup' do
   new_user = User.new(params[:user])
 
-  if new_user.valid? && params[:user][:password] == params['password_confirm']
+  if new_user.valid? && params[:user][:password] == params[:password_confirm]
     new_user.save
     session[:user_id] = new_user.id
     redirect("/users/#{new_user.id}/entries")
