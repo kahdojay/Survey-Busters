@@ -1,12 +1,14 @@
 <form action='#' method=''>
   <p> Survey Title: <%= survey.title %></p>
   <p> Created at: <%= survey.created_at %> </p>
-  <p> Question: <%= survey.questions.first.description %> </p>
-  <p> Answers: </p>
-  <ul>
-    <% survey.questions.first.answers.each do |answer| %>
-    <input type='radio' name='response' value='<%= answer.description %>'><%= answer.description %><br>
-    <% end %></br>
-  </ul>
-  <input type='submit'>
+
+
+  <div id="questions">
+    <% survey.questions.each do |question| %>
+      <%= erb :'survey/_show_each', locals: {question: question} %>
+    <% end %>
+
+  </div>
+
+  <input id="survey_submit" type='submit'>
 </form>
