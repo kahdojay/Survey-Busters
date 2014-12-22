@@ -1,4 +1,4 @@
-<form action='#' method=''>
+<form id="survey_submit" action="/survey/<%= survey.id %>/stat" method="GET">
   <p> Survey Title: <%= survey.title %></p>
   <p> Created at: <%= survey.created_at %> </p>
 
@@ -10,5 +10,5 @@
 
   </div>
 
-  <input id="survey_submit" type='submit'>
+  <input type='submit'>
 </form>
