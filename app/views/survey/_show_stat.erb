@@ -1,0 +1,13 @@
+<div class="question">
+  <% q_id = Answer.find(question_stat.keys.first.to_i).question_id %>
+  <% question = Question.find(q_id) %>
+  <p> Question: <%= question.description %> </p>
+  <p> Answers: </p>
+  <ul>
+    <% question_stat.each do |id, percentage| %>
+      <li> <%= Answer.find(id).description %>: <%= percentage %> % </li>
+    <% end %>
+  </ul>
+</div>
+
+<!-- forEach, addClass, underscore.js $('.selected') OOJS -->

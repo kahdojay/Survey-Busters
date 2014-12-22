@@ -4,11 +4,18 @@
 
 
   <div id="questions">
-    <% survey.questions.each do |question| %>
-      <%= erb :'survey/_show_each', locals: {question: question} %>
+    <% if stat_array %>
+      <% stat_array.each do |question_stat| %>
+        <%= erb :'survey/_show_stat', locals: {question_stat: question_stat, questions: questions} %>
+      <% end %>
+    <% else %>
+      <% survey.questions.each do |question| %>
+        <%= erb :'survey/_show_each', locals: {question: question} %>
+      <% end %>
+      <input type='submit'>
     <% end %>
-
   </div>
 
-  <input type='submit'>
+
+
 </form>

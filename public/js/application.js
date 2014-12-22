@@ -8,7 +8,7 @@ $(document).ready(function() {
         type: 'GET',
         data: $target.serialize()
       }).done(function(response){
-        console.log(response);
+        $('#survey_submit').replaceWith(response);
       });
     }
     else{
@@ -20,7 +20,7 @@ $(document).ready(function() {
 
 
 function check_all_responded(){
-  return $('input[type="radio"]:checked').length == 2;//$('.question').length;
+  return $('input[type="radio"]:checked').length == $('.question').length;
 };
 
 // function get_answer_id(element){
