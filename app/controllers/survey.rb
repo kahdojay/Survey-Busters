@@ -10,6 +10,7 @@ end
 
 
 get '/survey/:id/submit' do |id|
+  # create selection record
   params.each do |key, answer_id|
     next if !(key.match("response"))
     s = Selection.create(answer_id: answer_id.to_i)
@@ -17,6 +18,10 @@ get '/survey/:id/submit' do |id|
     p s
   end
 
+  # create survey_taker record
+  SurveyTaker.create(survey_id: id, user_id: current_user.id)
+
+  # get stats
   @survey = Survey.find(id)
   stat_array = @survey.questions.map {|q| q.find_stat}
   erb :'survey/take_survey', locals: {survey: @survey, stat_array: stat_array, questions: @survey.questions}, layout: false
