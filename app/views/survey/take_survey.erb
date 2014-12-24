@@ -1,21 +1,23 @@
-<form id="survey_submit" action="/survey/<%= survey.id %>/stat" method="GET">
-  <p> Survey Title: <%= survey.title %></p>
-  <p> Created at: <%= survey.created_at %> </p>
+<div class='container'>
+  <form id="survey_submit" action="/survey/<%= survey.id %>/stat" method="GET">
+    <p> Survey Title: <%= survey.title %></p>
+    <p> Created at: <%= survey.created_at %> </p>
 
 
-<div id="questions">
-  <% if stat_array %>
-    <% stat_array.each do |question_stat| %>
-      <%= erb :'survey/_show_stat', locals: {question_stat: question_stat, questions: questions} %>
+  <div id="questions">
+    <% if stat_array %>
+      <% stat_array.each do |question_stat| %>
+        <%= erb :'survey/_show_stat', locals: {question_stat: question_stat, questions: questions} %>
+      <% end %>
+    <% else %>
+      <% survey.questions.each do |question| %>
+        <%= erb :'survey/_show_each_question', locals: {question: question} %>
+      <% end %>
+      <input type='submit'>
     <% end %>
-  <% else %>
-    <% survey.questions.each do |question| %>
-      <%= erb :'survey/_show_each', locals: {question: question} %>
-    <% end %>
-    <input type='submit'>
-  <% end %>
+  </div>
+
+
+
+  </form>
 </div>
-
-
-
-</form>
