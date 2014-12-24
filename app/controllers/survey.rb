@@ -9,7 +9,7 @@ get '/survey/:id' do |id|
 end
 
 
-get '/survey/:id/stat' do |id|
+get '/survey/:id/submit' do |id|
   params.each do |key, answer_id|
     next if !(key.match("response"))
     s = Selection.create(answer_id: answer_id.to_i)
