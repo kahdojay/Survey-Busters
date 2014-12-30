@@ -1,4 +1,5 @@
-get '/survey/new' do
+get '/:id/survey/new' do |id|
+
   erb :'survey/create_survey'
 end
 

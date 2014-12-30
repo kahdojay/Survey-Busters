@@ -26,7 +26,7 @@
   <% else %>
     <a href='/logout' method='POST'>Logout</a><br><br>
     Welcome, <%= current_user.email %>!
-    <a href='/survey/new'>Create New Survey</a>
+    <a href='/<%= session[:user_id] %>/survey/new'>Create New Survey</a>
   <% end %>
   <%= yield %>
 </body>

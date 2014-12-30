@@ -1,4 +1,17 @@
-<form action="">
-<input type="radio" name="sex" value="male">Male<br>
-<input type="radio" name="sex" value="female">Female
+<div class="container">
+
+<form action="/survey" method="POST">
+  Author:<br>
+  <input name="article[author]" type="text"><br>
+
+  Title:<br>
+  <input name="article[title]" type="text"><br>
+  Price:<br>
+  <input name="article[price]" type="text"><br>
+  Description:<br>
+  <textarea name="article[content]"></textarea><br>
+  Email:<br>
+  <input name="article[email]" type="text"><br>
+  <input type="submit" value="SUBMIT">
 </form>
+</div>
