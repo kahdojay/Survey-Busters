@@ -1,0 +1,11 @@
+<% if current_user %>
+
+Welcome, <%= current_user.email %>!
+    <a href='/<%= session[:user_id] %>/survey/new'>Create New Survey</a>
+      <% if current_user.created_surveys.empty? == false %>
+        <h3>Here are your created surveys:</h3>
+        <% current_user.created_surveys.each do |survey| %>
+        <ul><li><%= survey.title %></li></ul>
+        <% end %>
+      <% end %>
+<% end %>

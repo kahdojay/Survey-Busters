@@ -1,7 +1,26 @@
-get '/surveys' do
-  @surveys = Survey.all
-  erb :'survey/all'
+
+#create a new survey
+get '/:id/survey/new' do |id|
+  if session[:user_id] != id.to_i
+    redirect('/')
+  else
+    erb :'survey/create_survey'
+  end
 end
+
+
+#Instantiates new survey after clicking add title, and redirects to edit
+post '/:id/survey/new' do |id|
+  @new_survey = Survey.create(title: params['new_survey']['title'], user_id: id)
+  redirect("#{id}/survey/#{@new_survey.id}/edit")
+end
+
+
+get '/:id/survey/:survey_id/edit' do |id, survey_id|
+  @survey = Survey.find(survey_id)
+  erb :'survey/edit'
+end
+
 
 get '/survey/:id' do |id|
   @survey = Survey.find(id)
@@ -27,35 +46,3 @@ get '/survey/:id/submit' do |id|
   erb :'survey/take_survey', locals: {survey: @survey, stat_array: stat_array, questions: @survey.questions}, layout: false
 end
 
-post '/surveys/new' do
-  new_survey = Survey.create(params[:survey])
-  if new_survey.valid?
-    new_survey.save
-    redirect('/surveys')
-  else
-    @error = "Please write something."
-    erb :main
-  end
-end
-
-get '/survey/:id/edit' do |id|
-  if session[:user_id] == current_user.id
-    @survey = Survey.find(id)
-    erb :'survey/edit'
-  else
-    redirect('/')
-  end
-end
-
-put '/survey/:id/edit' do |id|
-  @survey = Survey.find(id)
-  redirect("/survey/#{@survey.id}")
-end
-
-delete '/survey/:id' do |id|
-  if session[:user_id] == current_user.id
-    survey = Survey.find(id)
-    survey.delete!
-  end
-  redirect('/surveys')
-end

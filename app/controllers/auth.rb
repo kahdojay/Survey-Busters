@@ -7,7 +7,9 @@ post '/login' do
 
   if user && user.authenticate(params[:user][:password])
     session[:user_id] = user.id
+
     redirect '/'
+
   else
     set_error('Login Failed.')
     redirect '/login'
