@@ -1,23 +1,9 @@
 <div class="container">
-  <form action="/survey" method="POST">
+  <form action="/<%= current_user.id %>/survey/new" method="POST" />
     Write a Survey Title:<br>
-    <input name="article[author]" type="text"><br>
-    <input type="submit" value="Add Question"> *ADD AJAX FOR QUESTION FORM TO APPEAR*
+    <input name="new_survey[title]" type="text"><br>
+    <input type="submit" value="Add">
   </form><br>
 
-<form action="/survey" method="POST">
-  Question:<br>
-  <input name="article[author]" type="text"><br>
-<ul>
-  <li>Answer Choice 1:<br>
-  <input name="article[title]" type="text"><br></li>
-  <li>Answer Choice 2:<br>
-  <input name="article[price]" type="text"><br></li>
-  <li>Answer Choice 3:<br>
-  <input name="article[content]"></textarea><br></li>
-  <li>Answer Choice 4:<br>
-  <input name="article[email]" type="text"><br></li>
-</ul>
-  <input type="submit" value="SUBMIT">
-</form>
+
 </div>
