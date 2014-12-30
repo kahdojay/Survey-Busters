@@ -7,7 +7,7 @@
   <div id="questions">
     <% if stat_array %>
       <% stat_array.each do |question_stat| %>
-        <%= erb :'survey/_show_stat', locals: {question_stat: question_stat, questions: questions} %>
+        <%= erb :'survey/_show_stats', locals: {question_stat: question_stat, questions: questions} %>
       <% end %>
     <% else %>
       <% survey.questions.each do |question| %>

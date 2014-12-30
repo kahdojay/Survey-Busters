@@ -1,3 +1,3 @@
 get '/' do
-  redirect '/surveys'
+  erb :'home'
 end
