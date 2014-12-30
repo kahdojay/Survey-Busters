@@ -1,9 +1,0 @@
-<% if logged_in? && entry.user_id == current_user.id %>
-  <form action="/entry/<%= entry.id%>/edit">
-    <input type='submit' value='Edit entry'>
-  </form>
-  <form action= "/entry/<%= entry.id %>" method="POST">
-    <input type= "hidden" name="_method" value="DELETE">
-    <input type= "submit" value = "Delete">
-  </form>
-<% end %>

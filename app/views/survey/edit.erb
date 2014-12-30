@@ -1,0 +1,12 @@
+<form action='/survey/<%= @survey.id%>/edit' method='POST'>
+  <input type="hidden" name="_method" value="PUT">
+  Title:<br>
+
+  <input type="text" name="survey[title]" value="<%= @survey.title %>"><br>
+  Post:<br>
+
+  <input class = 'post' type="text" name="survey[post]"   value="<%= @survey.post %>"><br>
+  Tags (separate with comma):<br>
+
+  <input type='submit'>
+</form>
