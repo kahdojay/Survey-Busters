@@ -1,6 +1,9 @@
 get '/:id/survey/new' do |id|
-
-  erb :'survey/create_survey'
+  if session[:user_id] != id.to_i
+    redirect('/')
+  else
+    erb :'survey/create_survey'
+  end
 end
 
 get '/survey/:id' do |id|
