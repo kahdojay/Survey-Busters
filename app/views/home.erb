@@ -5,7 +5,7 @@ Welcome, <%= current_user.email %>!
       <% if current_user.created_surveys.empty? == false %>
         <h3>Here are your created surveys:</h3>
         <% current_user.created_surveys.each do |survey| %>
-        <ul><li><%= survey.title %></li></ul>
+        <a href="/survey/<%= survey.id %>"><ul><li><%= survey.title %></li></ul></a>
         <% end %>
       <% end %>
 <% end %>
