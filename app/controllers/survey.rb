@@ -21,11 +21,28 @@ get '/:id/survey/:survey_id/edit' do |id, survey_id|
   erb :'survey/edit'
 end
 
+post '/:id/survey/:survey_id/edit' do |id, survey_id|
+  @survey = Survey.find(survey_id)
+  @created_question = Question.create(description: params['question'])
+  @survey.questions << @created_question
+  i = 1
+  4.times do
+    @created_question.answers << Answer.create(description: params["#{i}"])
+    i += 1
+  end
+  erb :'survey/edit'
+end
+
+
 
 get '/survey/:id' do |id|
-  @survey_taker = SurveyTaker.where(survey_id: id, user_id: current_user.id)
   @survey = Survey.find(id)
-  stat_array = (@survey_taker[0] || @survey.user_id == current_user.id) ? @survey.questions.map { |q| q.find_stat } : nil
+
+  if current_user
+    @survey_taker = SurveyTaker.where(survey_id: id, user_id: current_user.id)
+    (stat_array = (@survey_taker[0] || @survey.user_id == current_user.id) ? @survey.questions.map { |q| q.find_stat } : nil)
+  end
+
   erb :'survey/take_survey', locals: {survey: @survey, stat_array: stat_array, survey_taker: @survey_taker}
 end
 
@@ -39,7 +56,7 @@ get '/survey/:id/submit' do |id|
   end
 
   # create survey_taker record
-  SurveyTaker.create(survey_id: id, user_id: current_user.id)
+  SurveyTaker.create(survey_id: id, user_id: current_user ? current_user.id : nil)
 
   # get stats
   @survey = Survey.find(id)
