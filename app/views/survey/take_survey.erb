@@ -1,12 +1,24 @@
-<form action='#' method=''>
-  <p> Survey Title: <%= survey.title %></p>
-  <p> Created at: <%= survey.created_at %> </p>
-  <p> Question: <%= survey.questions.first.description %> </p>
-  <p> Answers: </p>
-  <ul>
-    <% survey.questions.first.answers.each do |answer| %>
-    <input type='radio' name='response' value='<%= answer.description %>'><%= answer.description %><br>
-    <% end %></br>
-  </ul>
-  <input type='submit'>
-</form>
+<div class='container'>
+  <form id="survey_submit" action="/survey/<%= survey.id %>/submit" method="GET">
+    <p> Survey Title: <%= survey.title %></p>
+    <p> Created at: <%= survey.created_at %> </p>
+
+
+  <div id="questions">
+    <!-- if current_user is the current survey's author, show stats -->
+    <% if stat_array %>
+      <% stat_array.each do |question_stat| %>
+        <%= erb :'survey/_show_stats', locals: {question_stat: question_stat} %>
+      <% end %>
+    <% else %>
+      <% survey.questions.each do |question| %>
+        <%= erb :'survey/_show_each_question', locals: {question: question} %>
+      <% end %>
+      <input type='submit'>
+    <% end %>
+  </div>
+
+
+
+  </form>
+</div>

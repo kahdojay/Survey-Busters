@@ -1,7 +1,38 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
+  $('#survey_submit').on('submit', function(event){
+    event.preventDefault();
+    if (check_all_responded()){
+      var $target = $(event.target);
+      $.ajax({
+        url: $target.attr('action'),
+        type: 'GET',
+        data: $target.serialize()
+      }).done(function(response){
+        $('#survey_submit').replaceWith(response);
+      });
+    }
+    else{
+      alert("Some of the questions are not answered.");
+    }
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+  });
 });
+
+
+function check_all_responded(){
+  return $('input[type="radio"]:checked').length == $('.question').length;
+};
+
+// function get_answer_id(element){
+//   element.name.split('_')[1]
+// };
+
+function get_all_responses(){
+  answered_ids = [];
+  $('input[type="radio"]:checked').toArray().forEach(function(answer) {
+    answered_ids.push(answer.name.split('_')[1]);
+    });
+  console.log(answered_ids);
+  return answered_ids;
+};
+

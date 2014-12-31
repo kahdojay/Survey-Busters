@@ -1,0 +1,12 @@
+<% if current_user %>
+<div class='container'>
+Welcome, <%= current_user.email %>!
+    <a href='/<%= session[:user_id] %>/survey/new'>Create New Survey</a>
+      <% if current_user.created_surveys.empty? == false %>
+        <h3>Here are your created surveys:</h3>
+        <% current_user.created_surveys.each do |survey| %>
+        <a href="/survey/<%= survey.id %>"><ul><li><%= survey.title %></li></ul></a>
+        <% end %>
+      <% end %>
+<% end %>
+</div>

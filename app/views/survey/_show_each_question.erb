@@ -1,0 +1,11 @@
+<div class="question">
+  <p> Question: <%= question.description %> </p>
+  <p> Answers: </p>
+  <ul>
+    <% question.answers.each do |answer| %>
+    <input type='radio' name='response<%= question.id %>' value='<%= answer.id %>'><%= answer.description %><br>
+    <% end %></br>
+  </ul>
+</div>
+
+<!-- forEach, addClass, underscore.js $('.selected') OOJS -->

@@ -1,0 +1,16 @@
+<div class='container'>
+  <% @surveys.each do |survey| %>
+    Author:
+    <a href="/users/<%= survey.user_id %>">
+    <%= User.find(survey.user_id).email %><br>
+    </a>
+    Survey Title:
+    <a href='/survey/<%= survey.id %>'>
+      <%= survey.title %><br>
+    </a>
+    Publish Date: <%= survey.created_at %><br>
+    <p>
+      <%= survey.title %>
+    </p> </br>
+  <% end %>
+</div>
