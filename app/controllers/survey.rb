@@ -23,8 +23,10 @@ end
 
 
 get '/survey/:id' do |id|
+  @survey_taker = SurveyTaker.where(survey_id: id, user_id: current_user.id)
   @survey = Survey.find(id)
-  erb :'survey/take_survey', locals: {survey: @survey, stat_array: nil}
+  stat_array = (@survey_taker[0] || @survey.user_id == current_user.id) ? @survey.questions.map { |q| q.find_stat } : nil
+  erb :'survey/take_survey', locals: {survey: @survey, stat_array: stat_array, survey_taker: @survey_taker}
 end
 
 
@@ -34,7 +36,6 @@ get '/survey/:id/submit' do |id|
     next if !(key.match("response"))
     s = Selection.create(answer_id: answer_id.to_i)
     s.user_id = current_user.id if current_user
-    p s
   end
 
   # create survey_taker record
