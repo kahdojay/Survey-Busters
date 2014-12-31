@@ -2,3 +2,11 @@
 
 <!-- form for adding a question -->
 
+<form action='/<%= current_user.id %>/survey/<%= @survey.id %>/edit' method='POST'>
+<input type='text' name='question'>
+<input type='text' name='1'>
+<input type='text' name='2'>
+<input type='text' name='3'>
+<input type='text' name='4'>
+<input type='submit'>
+</form>

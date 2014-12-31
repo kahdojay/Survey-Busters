@@ -21,6 +21,19 @@ get '/:id/survey/:survey_id/edit' do |id, survey_id|
   erb :'survey/edit'
 end
 
+post '/:id/survey/:survey_id/edit' do |id, survey_id|
+  @survey = Survey.find(survey_id)
+  @created_question = Question.create(description: params['question'])
+  @survey.questions << @created_question
+  i = 1
+  4.times do
+    @created_question.answers << Answer.create(description: params["#{i}"])
+    i += 1
+  end
+  erb :'survey/edit'
+end
+
+
 
 get '/survey/:id' do |id|
   @survey_taker = SurveyTaker.where(survey_id: id, user_id: current_user.id)
