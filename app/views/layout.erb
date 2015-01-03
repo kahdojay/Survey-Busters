@@ -21,8 +21,8 @@
 <body>
   <h1>Survey Busters</h1>
   <a href='/'>Home</a><br>
-  <a href='/signup'>Sign Up</a><br>
   <% if !logged_in? %>
+    <a href='/signup'>Sign Up</a><br>
     <a href='/login'>Login</a><br>
   <% else %>
     <a href='/logout' method='POST'>Logout</a><br><br>
