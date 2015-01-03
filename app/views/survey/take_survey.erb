@@ -1,7 +1,7 @@
 <div class='container'>
   <form id="survey_submit" action="/survey/<%= survey.id %>/submit" method="GET">
-    <p> Survey Title: <%= survey.title %></p>
-    <p> Created at: <%= survey.created_at %> </p>
+    <h1> Survey Title: <%= survey.title %></h1>
+    <h2> Created at: <%= survey.created_at.strftime("%c") %> </h2>
 
 
   <div id="questions">
