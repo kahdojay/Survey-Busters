@@ -1,19 +1,21 @@
-<h1><%= @survey.title %></h1>
-<% @survey.questions.each do |question| %>
-  <h3><%= question.description.capitalize %></h3>
-    <% question.answers.each do |answer| %>
-      <ol>
-      <li><%= answer.description.capitalize %></li>
-      </ol>
-    <% end %>
-<% end %>
-<!-- form for adding a question -->
+<div class='container'>
+  <h1><%= @survey.title %></h1>
+  <% @survey.questions.each do |question| %>
+    <h3><%= question.description.capitalize %></h3>
+      <% question.answers.each do |answer| %>
+        <ol>
+        <li><%= answer.description.capitalize %></li>
+        </ol>
+      <% end %>
+  <% end %>
+  <!-- form for adding a question -->
 
-<form action='/<%= current_user.id %>/survey/<%= @survey.id %>/edit' method='POST'>
-<input type='text' name='question'>
-<input type='text' name='1'>
-<input type='text' name='2'>
-<input type='text' name='3'>
-<input type='text' name='4'>
-<input type='submit'>
-</form>
+  <form action='/<%= current_user.id %>/survey/<%= @survey.id %>/edit' method='POST'>
+  <h3> Question: <input type='text' name='question'><br></h3>
+  <h4> Answer Choice 1: <input type='text' name='1'><br></h4>
+  <h4> Answer Choice 2: <input type='text' name='2'><br></h4>
+  <h4> Answer Choice 3: <input type='text' name='3'><br></h4>
+  <h4> Answer Choice 4: <input type='text' name='4'><br></h4>
+  <input type='submit'><br>
+  </form>
+</div>

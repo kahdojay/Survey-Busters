@@ -17,6 +17,7 @@ end
 
 
 get '/:id/survey/:survey_id/edit' do |id, survey_id|
+  redirect '/' if !current_user
   @survey = Survey.find(survey_id)
   erb :'survey/edit'
 end

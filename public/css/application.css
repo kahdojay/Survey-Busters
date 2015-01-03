@@ -1,11 +1,11 @@
 body {
-  background-color: white;
-  background-size: 80%;
-  background-repeat: no-repeat;
+  margin-left: 1em;
+  background: url("../img/lightpaperfibers.png");
 }
 .container {
+  background: url("../img/gray_sand.png");
   margin: 20px auto;
-  width: 80%;
+  width: 60%;
   padding: 0px 20px 20px 20px;
   border: 1px dotted black;
   background-color: #a5adb0;
@@ -18,4 +18,17 @@ th {
 li {
   list-style-type: none;
 
+}
+
+* {
+  font-family: Lato;
+}
+
+a {
+  text-decoration: none;
+  color: #BF5FFF;
+}
+
+.container {
+  color: #faebd7;
 }

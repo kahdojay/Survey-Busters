@@ -11,6 +11,7 @@
     application.css is where you put your styles
   -->
   <link rel="stylesheet" href="/css/application.css">
+  <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/application.js"></script>
@@ -19,10 +20,10 @@
   <title></title>
 </head>
 <body>
-  <h1>Survey Busters</h1>
+  <a href='/' style="color: black"><h1><em>Survey Busters</em></h1></a>
   <a href='/'>Home</a><br>
-  <a href='/signup'>Sign Up</a><br>
   <% if !logged_in? %>
+    <a href='/signup'>Sign Up</a><br>
     <a href='/login'>Login</a><br>
   <% else %>
     <a href='/logout' method='POST'>Logout</a><br><br>
